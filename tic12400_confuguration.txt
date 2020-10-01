@@ -1,0 +1,543 @@
+
+
+reg [      DEVICE_ID] addr 0x01 val 0x000020 0b_0000_0000_0000_0000_0010_0000
+    reg  1 bit 23-11: R RESERVED 0 
+    reg  1 bit 10- 4: R major 2 
+    reg  1 bit  3- 0: R  minor 0 
+
+reg [       INT_STAT] addr 0x02 val 0x000600 0b_0000_0000_0000_0110_0000_0000
+    reg  2 bit 13:0 RC Default factory setting is successfully loaded upon device initialization
+    reg  2 bit 12:0 RC No ADC self-diagnostic error is detected
+    reg  2 bit 11:0 RC No wetting current error is detected 
+    reg  2 bit 10:1 RC VS voltage state change occurred with respect to VS1_THRES2A or VS1_THRES2B 
+    reg  2 bit  9:1 RC VS voltage state change occurred with respect to VS0_THRES2A or VS0_THRES2B
+    reg  2 bit  8:0 RC CRC calculation is running, not started 
+    reg  2 bit  7:0 RC No under-voltage condition occurred
+    reg  2 bit  6:0 RC No over-voltage condition occurred or cleared on the VS pin,
+    reg  2 bit  5:0 RC No temperature warning event occurred 
+    reg  2 bit  4:0 RC No temperature Shutdown event occurred 
+    reg  2 bit  3:0 RC No switch state change occurred 
+    reg  2 bit  2:0 RC No parity error occurred in the last received SI stream
+    reg  2 bit  1:0 RC 32 clock pulse during a CS = low sequence was detected
+    reg  2 bit  0:0 RC no Power-On-Reset (POR) event occurred
+
+reg [            CRC] addr 0x03 val 0x00ffff 0b_0000_0000_1111_1111_1111_1111
+    reg  3 bit 22-16:0 R Reserved
+    reg  3 bit 15- 0:65535 R CRC-16-CCITT calculation result
+
+reg [   IN_STAT_MISC] addr 0x04 val 0x0000a0 0b_0000_0000_0000_0000_1010_0000
+    reg  4 bit 12: R No error is identified from ADC self-diagnostic.
+    reg  4 bit 11: R Current sink on IN3 is operational
+    reg  4 bit 10: R Current sink on IN2 is operational
+    reg  4 bit  9: R Current source on IN1 is operational
+    reg  4 bit  8: R Current source on IN0 is operational
+    reg  4 bit  7- 6: R VS voltage is equal to or above threshold VS1_THRES2B
+    reg  4 bit  5- 4: R VS voltage is equal to or above threshold VS0_THRES2B
+    reg  4 bit  3: R VS voltage is above the under-voltage condition threshold
+    reg  4 bit  2: R VS voltage is below the over-voltage condition threshold
+    reg  4 bit  1: R Device junction temperature is below the temperature warning threshold TTW.
+    reg  4 bit  0:0 R Device junction temperature is below the temperature warning threshold TTW
+
+reg [   IN_STAT_COMP] addr 0x05 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg  5 bit 23: Input IN23 is below the comparator threshold.
+    reg  5 bit 22: Input IN22 is below the comparator threshold.
+    reg  5 bit 21: Input IN21 is below the comparator threshold.
+    reg  5 bit 20: Input IN20 is below the comparator threshold.
+    reg  5 bit 19: Input IN19 is below the comparator threshold.
+    reg  5 bit 18: Input IN18 is below the comparator threshold.
+    reg  5 bit 17: Input IN17 is below the comparator threshold.
+    reg  5 bit 16: Input IN16 is below the comparator threshold.
+    reg  5 bit 15: Input IN15 is below the comparator threshold.
+    reg  5 bit 14: Input IN14 is below the comparator threshold.
+    reg  5 bit 13: Input IN13 is below the comparator threshold.
+    reg  5 bit 12: Input IN12 is below the comparator threshold.
+    reg  5 bit 11: Input IN11 is below the comparator threshold.
+    reg  5 bit 10: Input IN10 is below the comparator threshold.
+    reg  5 bit 09: Input IN09 is below the comparator threshold.
+    reg  5 bit 08: Input IN08 is below the comparator threshold.
+    reg  5 bit 07: Input IN07 is below the comparator threshold.
+    reg  5 bit 06: Input IN06 is below the comparator threshold.
+    reg  5 bit 05: Input IN05 is below the comparator threshold.
+    reg  5 bit 04: Input IN04 is below the comparator threshold.
+    reg  5 bit 03: Input IN03 is below the comparator threshold.
+    reg  5 bit 02: Input IN02 is below the comparator threshold.
+    reg  5 bit 01: Input IN01 is below the comparator threshold.
+    reg  5 bit 00: Input IN00 is below the comparator threshold.
+
+reg [   IN_STAT_ADC0] addr 0x06 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg  6 bit 23-22:0 R Input IN17 is below threshold 2A.
+    reg  6 bit 21-20:0 R Input IN16 is below threshold 2A.
+    reg  6 bit 19-18:0 R Input IN15 is below threshold 2A.
+    reg  6 bit 17-16:0 R Input IN14 is below threshold 2A.
+    reg  6 bit 15-14:0 R Input IN13 is below threshold 2A.
+    reg  6 bit 13-12:0 R Input IN12 is below threshold 2A.
+    reg  6 bit    11:0 R Input IN11 is below configured threshold
+    reg  6 bit    10:0 R Input IN10 is below configured threshold
+    reg  6 bit    09:0 R Input IN09 is below configured threshold
+    reg  6 bit    08:0 R Input IN08 is below configured threshold
+    reg  6 bit    07:0 R Input IN07 is below configured threshold
+    reg  6 bit    06:0 R Input IN06 is below configured threshold
+    reg  6 bit    05:0 R Input IN05 is below configured threshold
+    reg  6 bit    04:0 R Input IN04 is below configured threshold
+    reg  6 bit    03:0 R Input IN03 is below configured threshold
+    reg  6 bit    02:0 R Input IN02 is below configured threshold
+    reg  6 bit    01:0 R Input IN01 is below configured threshold
+    reg  6 bit    00:0 R Input IN00 is below configured threshold
+
+reg [   IN_STAT_ADC1] addr 0x07 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg  7 bit 23-13:    0 R Reserved
+    reg  7 bit 12-10:0 R Input IN23 is below threshold 3A.
+    reg  7 bit 09-08:0 R Input IN22 is below threshold 3A.
+    reg  7 bit 07-06:0 R Input IN21 is below threshold 3A.
+    reg  7 bit 05-04:0 R Input IN20 is below threshold 3A.
+    reg  7 bit 03-02:0 R Input IN19 is below threshold 3A.
+    reg  7 bit 01-00:0 R Input IN18 is below threshold 3A.
+
+reg [IN_STAT_MATRIX0] addr 0x08 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg  8 bit 23:0 R Input IN13 is below threshold while IN9 pulled to GND
+    reg  8 bit 22:0 R Input IN13 is below threshold while IN8 pulled to GND
+    reg  8 bit 21:0 R Input IN13 is below threshold while IN7 pulled to GND
+    reg  8 bit 20:0 R Input IN13 is below threshold while IN6 pulled to GND
+    reg  8 bit 19:0 R Input IN13 is below threshold while IN5 pulled to GND
+    reg  8 bit 18:0 R Input IN13 is below threshold while IN4 pulled to GND
+    reg  8 bit 17:0 R Input IN12 is below threshold while IN9 pulled to GND
+    reg  8 bit 16:0 R Input IN12 is below threshold while IN8 pulled to GND
+    reg  8 bit 15:0 R Input IN12 is below threshold while IN7 pulled to GND
+    reg  8 bit 14:0 R Input IN12 is below threshold while IN6 pulled to GND
+    reg  8 bit 13:0 R Input IN12 is below threshold while IN5 pulled to GND
+    reg  8 bit 12:0 R Input IN12 is below threshold while IN4 pulled to GND
+    reg  8 bit 11:0 R Input IN11 is below threshold while IN9 pulled to GND
+    reg  8 bit 10:0 R Input IN11 is below threshold while IN8 pulled to GND
+    reg  8 bit  9:0 R Input IN11 is below threshold while IN7 pulled to GND
+    reg  8 bit  8:0 R Input IN11 is below threshold while IN6 pulled to GND
+    reg  8 bit  7:0 R Input IN11 is below threshold while IN5 pulled to GND
+    reg  8 bit  6:0 R Input IN11 is below threshold while IN4 pulled to GND
+    reg  8 bit  5:0 R Input IN10 is below threshold while IN9 pulled to GND
+    reg  8 bit  4:0 R Input IN10 is below threshold while IN8 pulled to GND
+    reg  8 bit  3:0 R Input IN10 is below threshold while IN7 pulled to GND
+    reg  8 bit  2:0 R Input IN10 is below threshold while IN6 pulled to GND
+    reg  8 bit  1:0 R Input IN10 is below threshold while IN5 pulled to GND
+    reg  8 bit  0:0 R Input IN10 is below threshold while IN4 pulled to GND
+
+reg [IN_STAT_MATRIX1] addr 0x09 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg  9 bit 23:0 R Input IN11 below threshold THRES_COM
+    reg  9 bit 22:0 R Input IN10 below threshold THRES_COM
+    reg  9 bit 21:0 R Input IN09 below threshold THRES_COM
+    reg  9 bit 20:0 R Input IN08 below threshold THRES_COM
+    reg  9 bit 19:0 R Input IN07 below threshold THRES_COM
+    reg  9 bit 18:0 R Input IN06 below threshold THRES_COM
+    reg  9 bit 17:0 R Input IN05 below threshold THRES_COM
+    reg  9 bit 16:0 R Input IN04 below threshold THRES_COM
+    reg  9 bit 15:0 R Input IN03 below threshold THRES_COM
+    reg  9 bit 14:0 R Input IN02 below threshold THRES_COM
+    reg  9 bit 13:0 R Input IN01 below threshold THRES_COM
+    reg  9 bit 12:0 R Input IN00 below threshold THRES_COM
+    reg  9 bit 11:0 R Input IN15 below threshold THRES_COM
+    reg  9 bit 11:0 R Input IN15 is below threshold while IN9 pulled to GND
+    reg  9 bit 10:0 R Input IN15 is below threshold while IN8 pulled to GND
+    reg  9 bit  9:0 R Input IN15 is below threshold while IN7 pulled to GND
+    reg  9 bit  8:0 R Input IN15 is below threshold while IN6 pulled to GND
+    reg  9 bit  7:0 R Input IN15 is below threshold while IN5 pulled to GND
+    reg  9 bit  6:0 R Input IN15 is below threshold while IN4 pulled to GND
+    reg  9 bit  5:0 R Input IN14 is below threshold while IN9 pulled to GND
+    reg  9 bit  4:0 R Input IN14 is below threshold while IN8 pulled to GND
+    reg  9 bit  3:0 R Input IN14 is below threshold while IN7 pulled to GND
+    reg  9 bit  2:0 R Input IN14 is below threshold while IN6 pulled to GND
+    reg  9 bit  1:0 R Input IN14 is below threshold while IN5 pulled to GND
+    reg  9 bit  0:0 R Input IN14 is below threshold while IN4 pulled to GND
+
+reg [      ANA_STAT0] addr 0x0a val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 10 bit 23-20:    0 R Reserved
+    reg 10 bit 19-10:    0 R  10-bits value of IN1
+    reg 10 bit  9- 0:    0 R  10-bits value of IN0
+
+reg [      ANA_STAT1] addr 0x0b val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 11 bit 23-20:    0 R Reserved
+    reg 11 bit 19-10:    0 R  10-bits value of IN3
+    reg 11 bit  9- 0:    0 R  10-bits value of IN2
+
+reg [      ANA_STAT2] addr 0x0c val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 12 bit 23-20:    0 R Reserved
+    reg 12 bit 19-10:    0 R  10-bits value of IN5
+    reg 12 bit  9- 0:    0 R  10-bits value of IN4
+
+reg [      ANA_STAT3] addr 0x0d val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 13 bit 23-20:    0 R Reserved
+    reg 13 bit 19-10:    0 R  10-bits value of IN7
+    reg 13 bit  9- 0:    0 R  10-bits value of IN6
+
+reg [      ANA_STAT4] addr 0x0e val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 14 bit 23-20:    0 R Reserved
+    reg 14 bit 19-10:    0 R  10-bits value of IN9
+    reg 14 bit  9- 0:    0 R  10-bits value of IN8
+
+reg [      ANA_STAT5] addr 0x0f val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 15 bit 23-20:    0 R Reserved
+    reg 15 bit 19-10:    0 R  10-bits value of IN11
+    reg 15 bit  9- 0:    0 R  10-bits value of IN10
+
+reg [      ANA_STAT6] addr 0x10 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 16 bit 23-20:    0 R Reserved
+    reg 16 bit 19-10:    0 R  10-bits value of IN13
+    reg 16 bit  9- 0:    0 R  10-bits value of IN12
+
+reg [      ANA_STAT7] addr 0x11 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 17 bit 23-20:    0 R Reserved
+    reg 17 bit 19-10:    0 R  10-bits value of IN15
+    reg 17 bit  9- 0:    0 R  10-bits value of IN14
+
+reg [      ANA_STAT8] addr 0x12 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 18 bit 23-20:    0 R Reserved
+    reg 18 bit 19-10:    0 R  10-bits value of IN17
+    reg 18 bit  9- 0:    0 R  10-bits value of IN16
+
+reg [      ANA_STAT9] addr 0x13 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 19 bit 23-20:    0 R Reserved
+    reg 19 bit 19-10:    0 R  10-bits value of IN19
+    reg 19 bit  9- 0:    0 R  10-bits value of IN18
+
+reg [     ANA_STAT10] addr 0x14 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 20 bit 23-20:    0 R Reserved
+    reg 20 bit 19-10:    0 R  10-bits value of IN21
+    reg 20 bit  9- 0:    0 R  10-bits value of IN20
+
+reg [     ANA_STAT11] addr 0x15 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 21 bit 23-20:    0 R Reserved
+    reg 21 bit 19-10:    0 R  10-bits value of IN23
+    reg 21 bit  9- 0:    0 R  10-bits value of IN22
+
+reg [     ANA_STAT12] addr 0x16 val 0x000196 0b_0000_0000_0000_0001_1001_0110
+    reg 22 bit 23-20: R RESERVED 0 
+    reg 22 bit 19-10: R adc_self_ana 0 
+    reg 22 bit  9- 0: R vs_ana 406 vs 11.894531 V
+
+reg [         CONFIG] addr 0x1a val 0x832800 0b_1000_0011_0010_1000_0000_0000
+    reg 26 bit 23: RW Use voltage divider factor of 10 for the VS measurement
+    reg 26 bit 22: RW Disable ADC self-diagnostic feature
+    reg 26 bit 17: Enable VS measurement at the end of every polling cycle
+    reg 26 bit 16: Disable wetting current reduction (to 2 mA) for 10mA and 15mA settings upon TW event for all inputs enabled with CSI.
+    reg 26 bit 13: RW  Disable wetting current reduction (to 2mA) for 10mA and 15mA settings upon TW event for all inputs enabled with CSO
+    reg 26 bit 12: RW  INT pin assertion scheme set to static
+    reg 26 bit 11: RW Trigger TIC12400-Q1 normal operation
+    reg 26 bit 10: RW Polling disabled. Device operates in continuous mode
+    reg 26 bit  9: RW no CRC calculation triggered
+    reg 26 bit  8- 5: Poll Act time 64us
+    reg 26 bit  4- 1: Poll time 2ms
+    reg 26 bit  0: No reset
+
+reg [         IN_EN] addr 0x1b val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 27 bit 23: Input channel IN23 disabled. Polling sequence skips this channel
+    reg 27 bit 22: Input channel IN22 disabled. Polling sequence skips this channel
+    reg 27 bit 21: Input channel IN21 disabled. Polling sequence skips this channel
+    reg 27 bit 20: Input channel IN20 disabled. Polling sequence skips this channel
+    reg 27 bit 19: Input channel IN19 disabled. Polling sequence skips this channel
+    reg 27 bit 18: Input channel IN18 disabled. Polling sequence skips this channel
+    reg 27 bit 17: Input channel IN17 disabled. Polling sequence skips this channel
+    reg 27 bit 16: Input channel IN16 disabled. Polling sequence skips this channel
+    reg 27 bit 15: Input channel IN15 disabled. Polling sequence skips this channel
+    reg 27 bit 14: Input channel IN14 disabled. Polling sequence skips this channel
+    reg 27 bit 13: Input channel IN13 disabled. Polling sequence skips this channel
+    reg 27 bit 12: Input channel IN12 disabled. Polling sequence skips this channel
+    reg 27 bit 11: Input channel IN11 disabled. Polling sequence skips this channel
+    reg 27 bit 10: Input channel IN10 disabled. Polling sequence skips this channel
+    reg 27 bit 09: Input channel IN9 disabled. Polling sequence skips this channel
+    reg 27 bit 08: Input channel IN8 disabled. Polling sequence skips this channel
+    reg 27 bit 07: Input channel IN7 disabled. Polling sequence skips this channel
+    reg 27 bit 06: Input channel IN6 disabled. Polling sequence skips this channel
+    reg 27 bit 05: Input channel IN5 disabled. Polling sequence skips this channel
+    reg 27 bit 04: Input channel IN4 disabled. Polling sequence skips this channel
+    reg 27 bit 03: Input channel IN3 disabled. Polling sequence skips this channel
+    reg 27 bit 02: Input channel IN2 disabled. Polling sequence skips this channel
+    reg 27 bit 01: Input channel IN1 disabled. Polling sequence skips this channel
+    reg 27 bit 00: Input channel IN0 disabled. Polling sequence skips this channel
+
+reg [     CS_SELECT] addr 0x1c val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 28 bit 9:0 RW Current Source (CSO) selected
+    reg 28 bit 8:0 RW Current Source (CSO) selected
+    reg 28 bit 7:0 RW Current Source (CSO) selected
+    reg 28 bit 6:0 RW Current Source (CSO) selected
+    reg 28 bit 5:0 RW Current Source (CSO) selected
+    reg 28 bit 4:0 RW Current Source (CSO) selected
+    reg 28 bit 3:0 RW Current Source (CSO) selected
+    reg 28 bit 2:0 RW Current Source (CSO) selected
+    reg 28 bit 1:0 RW Current Source (CSO) selected
+    reg 28 bit 0:0 RW Current Source (CSO) selected
+
+reg [       WC_CFG0] addr 0x1d val 0x492492 0b_0100_1001_0010_0100_1001_0010
+    reg 29 bit 23-21:2 R/W 2mA (typ.) wetting current
+    reg 29 bit 20-18:2 R/W 2mA (typ.) wetting current
+    reg 29 bit 17-15:2 R/W 2mA (typ.) wetting current
+    reg 29 bit 14-12:2 R/W 2mA (typ.) wetting current
+    reg 29 bit 11-09:2 R/W 2mA (typ.) wetting current
+    reg 29 bit 08-06:2 R/W 2mA (typ.) wetting current
+    reg 29 bit 05-03:2 R/W 2mA (typ.) wetting current
+    reg 29 bit 02-00:2 R/W 2mA (typ.) wetting current
+
+reg [       WC_CFG1] addr 0x1e val 0x600012 0b_0110_0000_0000_0000_0001_0010
+    reg 30 bit  23:22: 1
+    reg 30 bit  22:1 RW Disable wetting current auto-scaling (to 2mA) in continuous mode for 10mA and 15mA settings upon switch closure for all inputs enabled with CS
+    reg 30 bit  21:1 RW Disable wetting current auto-scaling (to 2mA) in continuous mode for 10mA and 15mA settings upon switch closure for all inputs enabled with CSO
+    reg 30 bit 20-18:0 R/W no wetting current
+    reg 30 bit 17-15:0 R/W no wetting current
+    reg 30 bit 14-12:0 R/W no wetting current
+    reg 30 bit 11-09:0 R/W no wetting current
+    reg 30 bit 08-06:0 R/W no wetting current
+    reg 30 bit 05-03:2 R/W 2mA (typ.) wetting current
+    reg 30 bit 02-00:2 R/W 2mA (typ.) wetting current
+
+reg [      CCP_CFG0] addr 0x1f val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 31 bit 23- 7:0 R Reserved
+    reg 31 bit  6- 4:0 RW Wetting current activation time in CCP (Clean Current Polling) mode 64 us
+    reg 31 bit  3:0 Wetting current setting for IN18 to IN23 in CCP mode 10mA (typ.) wetting current
+    reg 31 bit  2:0 Wetting current setting for IN12 to IN17 in CCP mode 10mA (typ.) wetting current
+    reg 31 bit  1:0 Wetting current setting for IN6 to IN11 in CCP mode 10mA (typ.) wetting current
+    reg 31 bit  0:0 Wetting current setting for IN0 to IN5 in CCP mode 10mA (typ.) wetting current
+
+reg [      CCP_CFG1] addr 0x20 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 32 bit 23: no clean current polling wetting current CCP_IN23
+    reg 32 bit 22: no clean current polling wetting current CCP_IN22
+    reg 32 bit 21: no clean current polling wetting current CCP_IN21
+    reg 32 bit 20: no clean current polling wetting current CCP_IN20
+    reg 32 bit 19: no clean current polling wetting current CCP_IN19
+    reg 32 bit 18: no clean current polling wetting current CCP_IN18
+    reg 32 bit 17: no clean current polling wetting current CCP_IN17
+    reg 32 bit 16: no clean current polling wetting current CCP_IN16
+    reg 32 bit 15: no clean current polling wetting current CCP_IN15
+    reg 32 bit 14: no clean current polling wetting current CCP_IN14
+    reg 32 bit 13: no clean current polling wetting current CCP_IN13
+    reg 32 bit 12: no clean current polling wetting current CCP_IN12
+    reg 32 bit 11: no clean current polling wetting current CCP_IN11
+    reg 32 bit 10: no clean current polling wetting current CCP_IN10
+    reg 32 bit 09: no clean current polling wetting current CCP_IN9
+    reg 32 bit 08: no clean current polling wetting current CCP_IN8
+    reg 32 bit 07: no clean current polling wetting current CCP_IN7
+    reg 32 bit 06: no clean current polling wetting current CCP_IN6
+    reg 32 bit 05: no clean current polling wetting current CCP_IN5
+    reg 32 bit 04: no clean current polling wetting current CCP_IN4
+    reg 32 bit 03: no clean current polling wetting current CCP_IN3
+    reg 32 bit 02: no clean current polling wetting current CCP_IN2
+    reg 32 bit 01: no clean current polling wetting current CCP_IN1
+    reg 32 bit 00: no clean current polling wetting current CCP_IN0
+
+reg [    THRES_COMP] addr 0x21 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 33 bit 32-12:0 R RESERVED
+    reg 33 bit 11-10:0 R/W comparator threshold set to 2V
+    reg 33 bit 09-08:0 R/W comparator threshold set to 2V
+    reg 33 bit 07-06:0 R/W comparator threshold set to 2V
+    reg 33 bit 05-04:0 R/W comparator threshold set to 2V
+    reg 33 bit 03-02:0 R/W comparator threshold set to 2V
+    reg 33 bit 01-00:0 R/W comparator threshold set to 2V
+
+reg [  INT_EN_COMP1] addr 0x22 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 34 bit 23-22:0 R/W no interrupt generation for IN11
+    reg 34 bit 21-20:0 R/W no interrupt generation for IN10
+    reg 34 bit 19-18:0 R/W no interrupt generation for IN9
+    reg 34 bit 17-16:0 R/W no interrupt generation for IN8
+    reg 34 bit 15-14:0 R/W no interrupt generation for IN7
+    reg 34 bit 13-12:0 R/W no interrupt generation for IN6
+    reg 34 bit 11-10:0 R/W no interrupt generation for IN5
+    reg 34 bit 09-08:0 R/W no interrupt generation for IN4
+    reg 34 bit 07-06:0 R/W no interrupt generation for IN3
+    reg 34 bit 05-04:0 R/W no interrupt generation for IN2
+    reg 34 bit 03-02:0 R/W no interrupt generation for IN1
+    reg 34 bit 01-00:0 R/W no interrupt generation for IN0
+
+reg [  INT_EN_COMP2] addr 0x23 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 35 bit 23-22:0 R/W no interrupt generation for IN23
+    reg 35 bit 21-20:0 R/W no interrupt generation for IN22
+    reg 35 bit 19-18:0 R/W no interrupt generation for IN21
+    reg 35 bit 17-16:0 R/W no interrupt generation for IN20
+    reg 35 bit 15-14:0 R/W no interrupt generation for IN19
+    reg 35 bit 13-12:0 R/W no interrupt generation for IN18
+    reg 35 bit 11-10:0 R/W no interrupt generation for IN17
+    reg 35 bit 09-08:0 R/W no interrupt generation for IN16
+    reg 35 bit 07-06:0 R/W no interrupt generation for IN15
+    reg 35 bit 05-04:0 R/W no interrupt generation for IN14
+    reg 35 bit 03-02:0 R/W no interrupt generation for IN13
+    reg 35 bit 01-00:0 R/W no interrupt generation for IN12
+
+reg [   INT_EN_CFG0] addr 0x24 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 36 bit 23-12: 0 R Reserved
+    reg 36 bit 11:0 RW INT pin assertion due to ADC error disabled 
+    reg 36 bit 10:0 RW INT pin assertion due to wetting current error disabled. 
+    reg 36 bit  9:0 RW INT pin assertion due to VS1 threshold crossing disabled. 
+    reg 36 bit  8:0 RW INT pin assertion due to VS0 threshold crossing disabled 
+    reg 36 bit  7:0 RW INT pin assertion due to CRC calculation completion disabled 
+    reg 36 bit  6:0 RW INT pin assertion due to UV event disabled 
+    reg 36 bit  5:0 RW INT pin assertion due to OV event disabled 
+    reg 36 bit  4:0 RW INT pin assertion due to TW event disabled
+    reg 36 bit  3:0 RW INT pin assertion due to TSD event disabled 
+    reg 36 bit  2:0 RW INT pin assertion due to SSC event disabled
+    reg 36 bit  1:0 RW INT pin assertion due to parity fail event disabled
+    reg 36 bit  0:0 RW INT pin assertion due to SPI fail event disabled.
+
+reg [   INT_EN_CFG1] addr 0x25 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 37 bit 23-22:0 RW no interrupt generation for IN11
+    reg 37 bit 21-20:0 RW no interrupt generation for IN10
+    reg 37 bit 19-18:0 RW no interrupt generation for IN9
+    reg 37 bit 17-16:0 RW no interrupt generation for IN8
+    reg 37 bit 15-14:0 RW no interrupt generation for IN7
+    reg 37 bit 13-12:0 RW no interrupt generation for IN6
+    reg 37 bit 11-10:0 RW no interrupt generation for IN5
+
+reg [   INT_EN_CFG2] addr 0x26 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 38 bit 23-22:0 RW no interrupt generation for IN17 w.r.t. THRES2B
+    reg 38 bit 21-20:0 RW no interrupt generation for IN17 w.r.t. THRES2A
+    reg 38 bit 19-18:0 RW no interrupt generation for IN16 w.r.t. THRES2B
+    reg 38 bit 17-16:0 RW no interrupt generation for IN16 w.r.t. THRES2A
+    reg 38 bit 15-14:0 RW no interrupt generation for IN15 w.r.t. THRES2B
+    reg 38 bit 13-12:0 RW no interrupt generation for IN15 w.r.t. THRES2A
+    reg 38 bit 11-10:0 RW no interrupt generation for IN14 w.r.t. THRES2B
+    reg 38 bit  9- 8:0 RW no interrupt generation for IN14 w.r.t. THRES2A
+    reg 38 bit  7- 6:0 RW no interrupt generation for IN13 w.r.t. THRES2B
+    reg 38 bit  5- 4:0 RW no interrupt generation for IN13 w.r.t. THRES2A
+    reg 38 bit  3- 2:0 RW no interrupt generation for IN12 w.r.t. THRES2B
+    reg 38 bit  1- 0:0 RW no interrupt generation for IN12 w.r.t. THRES2A
+
+reg [   INT_EN_CFG3] addr 0x27 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 39 bit 23-22:0 RW no interrupt generation for IN21 w.r.t. THRES3C
+    reg 39 bit 21-20:0 RW no interrupt generation for IN21 w.r.t. THRES3B
+    reg 39 bit 19-18:0 RW no interrupt generation for IN21 w.r.t. THRES3A
+    reg 39 bit 17-16:0 RW no interrupt generation for IN20 w.r.t. THRES3C
+    reg 39 bit 15-14:0 RW no interrupt generation for IN20 w.r.t. THRES3B
+    reg 39 bit 13-12:0 RW no interrupt generation for IN20 w.r.t. THRES3A
+    reg 39 bit 11-10:0 RW no interrupt generation for IN19 w.r.t. THRES3C
+    reg 39 bit  9- 8:0 RW no interrupt generation for IN19 w.r.t. THRES3B
+    reg 39 bit  7- 6:0 RW no interrupt generation for IN19 w.r.t. THRES3A
+    reg 39 bit  5- 4:0 RW no interrupt generation for IN18 w.r.t. THRES3C
+    reg 39 bit  3- 2:0 RW no interrupt generation for IN18 w.r.t. THRES3B
+    reg 39 bit  1- 0:0 RW no interrupt generation for IN18 w.r.t. THRES3A
+
+reg [   INT_EN_CFG4] addr 0x28 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 40 bit 23-22:0 RW no interrupt generation for VS w.r.t. VS1_THRES2B
+    reg 40 bit 21-20:0 RW no interrupt generation for VS w.r.t. VS1_THRES2A
+    reg 40 bit 19-18:0 RW no interrupt generation for VS w.r.t. VS0_THRES2B
+    reg 40 bit 17-16:0 RW no interrupt generation for VS w.r.t. VS0_THRES2A
+    reg 40 bit 15-14:0 RW no interrupt generation for IN23 w.r.t. THRES9
+    reg 40 bit 13-12:0 RW no interrupt generation for IN23 w.r.t. THRES8
+    reg 40 bit 11-10:0 RW no interrupt generation for IN23 w.r.t. THRES3C
+    reg 40 bit  9- 8:0 RW no interrupt generation for IN23 w.r.t. THRES3B
+    reg 40 bit  7- 6:0 RW no interrupt generation for IN23 w.r.t. THRES3A
+    reg 40 bit  5- 4:0 RW no interrupt generation for IN22 w.r.t. THRES3C
+    reg 40 bit  3- 2:0 RW no interrupt generation for IN22 w.r.t. THRES3B
+    reg 40 bit  1- 0:0 RW no interrupt generation for IN22 w.r.t. THRES3A
+
+reg [    THRES_CFG0] addr 0x29 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 41 bit 23-20: RESERVED 0 
+    reg 41 bit 19-10: THRES1 0 
+    reg 41 bit  9- 0:   THRES0 0 
+
+reg [    THRES_CFG1] addr 0x2a val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 42 bit 23-20: RESERVED 0 
+    reg 42 bit 19-10: THRES3 0 
+    reg 42 bit  9- 0:   THRES2 0 
+
+reg [    THRES_CFG2] addr 0x2b val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 43 bit 23-20: RESERVED 0 
+    reg 43 bit 19-10: THRES5 0 
+    reg 43 bit  9- 0:   THRES4 0 
+
+reg [    THRES_CFG3] addr 0x2c val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 44 bit 23-20: RESERVED 0 
+    reg 44 bit 19-10: THRES7 0 
+    reg 44 bit  9- 0:   THRES6 0 
+
+reg [    THRES_CFG4] addr 0x2d val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 45 bit 23-20: RESERVED 0 
+    reg 45 bit 19-10: THRES9 0 
+    reg 45 bit  9- 0:   THRES8 0 
+
+reg [ THRESMAP_CFG0] addr 0x2e val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 46 bit 23-21:0 RW THRESMAP_IN7 THRES0
+    reg 46 bit 20-18:0 RW THRESMAP_IN6 THRES0
+    reg 46 bit 17-15:0 RW THRESMAP_IN5 THRES0
+    reg 46 bit 14-12:0 RW THRESMAP_IN4 THRES0
+    reg 46 bit 11- 9:0 RW THRESMAP_IN3 THRES0
+    reg 46 bit  8- 6:0 RW THRESMAP_IN2 THRES0
+    reg 46 bit  5- 3:0 RW THRESMAP_IN1 THRES0
+    reg 46 bit  2- 0:0 RW THRESMAP_IN0 THRES0
+
+reg [ THRESMAP_CFG1] addr 0x2f val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 47 bit 23-18:0 R Reserved
+    reg 47 bit 17-15:0 RW THRESMAP_IN12_IN17_THRES2B THRES0
+    reg 47 bit 14-12:0 RW THRESMAP_IN12_IN17_THRES2A THRES0
+    reg 47 bit 11- 9:0 RW THRESMAP_IN11 THRES0
+    reg 47 bit  8- 6:0 RW THRESMAP_IN10 THRES0
+    reg 47 bit  5- 3:0 RW THRESMAP_IN9 THRES0
+    reg 47 bit  2- 0:0 RW THRESMAP_IN8 THRES0
+
+reg [ THRESMAP_CFG2] addr 0x30 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 48 bit 23-21:0 R Reserved
+    reg 48 bit 20-18:0 RW THRESMAP_VS1_THRES2B
+    reg 48 bit 17-15:0 RW THRESMAP_VS1_THRES2A THRES0
+    reg 48 bit 14-12:0 RW THRESMAP_VS0_THRES2B THRES0
+    reg 48 bit 11- 9:0 RW THRESMAP_VS0_THRES2A THRES0
+    reg 48 bit  9- 6:0 RW THRESMAP_IN18_IN23_THRES3C THRES0
+    reg 48 bit  5- 3:0 RW THRESMAP_IN18_IN23_THRES3B THRES0
+    reg 48 bit  2- 0:0 RW THRESMAP_IN18_IN23_THRES3A THRES0
+
+reg [        MATRIX] addr 0x31 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 49 bit 23-17:0 R Reserved
+    reg 49 bit 16-15:0 RW no interrupt generation for w.r.t. threshold THRES_COM
+    reg 49 bit 14- 5:0 RW THRES_COM
+    reg 49 bit  4- 3:0 RW no matrix, regular inputs only
+    reg 49 bit  2- 0:0 RW Polling active time setting for the matrix inputs: 64μs
+
+reg [          MODE] addr 0x32 val 0x000000 0b_0000_0000_0000_0000_0000_0000
+    reg 50 bit 23: comparator mode for IN23
+    reg 50 bit 22: comparator mode for IN22
+    reg 50 bit 21: comparator mode for IN21
+    reg 50 bit 20: comparator mode for IN20
+    reg 50 bit 19: comparator mode for IN19
+    reg 50 bit 18: comparator mode for IN18
+    reg 50 bit 17: comparator mode for IN17
+    reg 50 bit 16: comparator mode for IN16
+    reg 50 bit 15: comparator mode for IN15
+    reg 50 bit 14: comparator mode for IN14
+    reg 50 bit 13: comparator mode for IN13
+    reg 50 bit 12: comparator mode for IN12
+    reg 50 bit 11: comparator mode for IN11
+    reg 50 bit 10: comparator mode for IN10
+    reg 50 bit 09: comparator mode for IN9
+    reg 50 bit 08: comparator mode for IN8
+    reg 50 bit 07: comparator mode for IN7
+    reg 50 bit 06: comparator mode for IN6
+    reg 50 bit 05: comparator mode for IN5
+    reg 50 bit 04: comparator mode for IN4
+    reg 50 bit 03: comparator mode for IN3
+    reg 50 bit 02: comparator mode for IN2
+    reg 50 bit 01: comparator mode for IN1
+    reg 50 bit 00: comparator mode for IN0 
+
++----+-----+------+------+----+-------+-------+---------+---------+---------+
+| ch | wc  | Mode | pull | En | ctrsh | tresh | intMode | voltage | inLevel |
++----+-----+------+------+----+-------+-------+---------+---------+---------+
+| 00 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 01 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 02 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 03 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 04 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 05 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 06 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 07 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 08 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 09 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 10 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 11 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 12 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 13 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 14 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 15 | 2.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 16 | 0.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 17 | 0.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 18 | 0.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 19 | 0.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 20 | 0.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 21 | 0.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 22 | 0.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
+| 23 | 0.0 |  CMP |  U   |  0 |  2.0V |  0.0V |    N    |   0.0V  |  below  |
++----+-----+------+------+----+-------+-------+---------+---------+---------+
+ 
+
+
+ Support: aabzele@gmail.com Alexander Barunin
